@@ -1,6 +1,8 @@
 {dispatch_impl} = require 'libprotocol'
 {info, warn, error, debug} = dispatch_impl 'ILogger', 'IDom'
 
+$ = require 'commonjs-jquery'
+
 IDom = [
     ['html',          ['new_content']]
     ['setValue',      ['new_value']]
@@ -54,7 +56,7 @@ in_subtree = ($node, target) ->
         false
 
 jqidom = (node) ->
-    $node = jQuery node
+    $node = $ node
 
 
     {
@@ -75,7 +77,7 @@ jqidom = (node) ->
             $node = if elid is 'this'
                 $node
             else
-                jQuery "##{elid}"
+                $ "##{elid}"
 
             if in_subtree $node, target_node
                 return true
@@ -109,16 +111,16 @@ jqidom = (node) ->
 
     click: (handler) -> $node.click handler
 
-    globalclick: (handler) -> jQuery(document).click handler
+    globalclick: (handler) -> $(document).click handler
 
     kill: -> $node.remove()
 
     stop_event: (e) ->
-        jQuery.Event(e).stopPropagation()
+        $.Event(e).stopPropagation()
 
     keyDown: (handler) -> $node.bind 'keydown', handler
 
-    globalKeyDown: (handler) -> jQuery(document).bind 'keydown', handler
+    globalKeyDown: (handler) -> $(document).bind 'keydown', handler
 
     on_change: (handler) ->
         $node.bind 'onchange', handler
@@ -141,17 +143,17 @@ jqidom = (node) ->
 
         r1.concat ($node.find attr).toArray()
 
-    get_by_id: (id) -> jQuery "##{id}"
+    get_by_id: (id) -> $ "##{id}"
 
-    getData: (attr, node=$node) -> (jQuery node).data()[attr]
+    getData: (attr, node=$node) -> ($ node).data()[attr]
 
-    get_id: (node=$node) -> (jQuery node).attr 'id'
+    get_id: (node=$node) -> ($ node).attr 'id'
 
-    on_dom_ready: (f) ->  (jQuery document).ready f
+    on_dom_ready: (f) ->  ($ document).ready f
 
-    on_document_loaded: (f) ->  (jQuery window).load f
+    on_document_loaded: (f) ->  ($ window).load f
 
-    one: (sel) -> (jQuery sel)
+    one: (sel) -> ($ sel)
 
     document: -> window.document
 

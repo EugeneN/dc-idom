@@ -1,7 +1,7 @@
 {
   "name": "dc-idom",
   "description": "DNA component IDom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": {
     "name": "E.Naumenko"
   },
@@ -12,7 +12,8 @@
   "dependencies": {
     "libprotein": "*",
     "console-logger": "*",
-    "dna-lang": "*"
+    "dna-lang": "*",
+    "commonjs-jquery": "*"
   },
   "scripts": {
     "postinstall": "coffee -c index.coffee"
