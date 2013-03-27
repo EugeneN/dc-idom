@@ -4,7 +4,8 @@
 $ = require 'commonjs-jquery'
 
 IDom = [
-    ['html',          ['new_content']]
+    ['set-html!',     ['new_content']]
+    ['get-html',      []]
     ['setValue',      ['new_value']]
     ['setText',       ['new_text']]
     ['getValue',      []]
@@ -84,8 +85,10 @@ jqidom = (node) ->
 
         false
 
-    html: (args...) ->
+    'set-html!': (args...) ->
         $node.html (args.join '')
+
+    'get-html': -> $node.html()
 
     setValue: (args...) ->
         $node.val (args.join '')
