@@ -163,16 +163,6 @@ jqidom = (node) ->
     get_root_node: -> node
 
     add_event_listener: (event_name, handler) ->
-        function addEvent(evnt, elem, func) {
-           if (elem.addEventListener)  // W3C DOM
-              elem.addEventListener(evnt,func,false);
-           else if (elem.attachEvent) { // IE DOM
-              elem.attachEvent("on"+evnt, func);
-           }
-           else { // No much to do
-              elem[evnt] = func;
-           }
-        }
         if node.addEventListener
             node.addEventListener event_name, handler #, false?
         else if node.attachEvent # ie
