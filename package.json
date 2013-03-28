@@ -1,7 +1,7 @@
 {
   "name": "dc-idom",
   "description": "DNA component IDom",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name": "E.Naumenko"
   },
@@ -18,6 +18,7 @@
   "scripts": {
     "postinstall": "coffee -c index.coffee"
   },
+  "cafebuild": "coffee -c index.coffee",
   "engine": [
     "node >=0.1.102"
   ],
