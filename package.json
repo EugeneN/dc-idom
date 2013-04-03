@@ -24,5 +24,7 @@
   ],
   "main": "./index.js",
   "readme": "libmonad\n========",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "_id": "dc-idom@0.0.6",
+  "_from": "dc-idom@"
 }

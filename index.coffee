@@ -1,5 +1,6 @@
 {dispatch_impl} = require 'libprotocol'
 {info, warn, error, debug} = dispatch_impl 'ILogger', 'IDom'
+{is_array} = require 'libprotein'
 
 $ = require 'commonjs-jquery'
 
@@ -47,6 +48,7 @@ IDom = [
     ['enable', []]
 
     ['text!', ['text']]
+
 ]
 
 in_subtree = ($node, target) ->
@@ -60,7 +62,6 @@ jqidom = (node) ->
 
 
     {
-
     "text!": (t) -> $node.text t
 
     disable: -> $node.attr 'disabled', 'disabled'
@@ -71,7 +72,11 @@ jqidom = (node) ->
 
     parent: -> $node.parent()
 
-    target: (ev) -> ev.target
+    target: (ev) ->
+        if is_array ev
+            ev[0].target
+        else
+            ev.target
 
     is_in: (subtrees, target_node) ->
         for elid in subtrees
