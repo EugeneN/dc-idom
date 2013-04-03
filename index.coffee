@@ -72,11 +72,7 @@ jqidom = (node) ->
 
     parent: -> $node.parent()
 
-    target: (ev) ->
-        if is_array ev
-            ev[0].target
-        else
-            ev.target
+    target: (ev) -> ev.target
 
     is_in: (subtrees, target_node) ->
         for elid in subtrees
