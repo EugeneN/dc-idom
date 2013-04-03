@@ -47,9 +47,6 @@ IDom = [
     ['enable', []]
 
     ['text!', ['text']]
-    ['stop!', []]
-    ['stop?', ['v']]
-
 ]
 
 in_subtree = ($node, target) ->
@@ -63,9 +60,6 @@ jqidom = (node) ->
 
 
     {
-    "stop!": -> null
-
-    "stop?": (v) -> if v then null else v
 
     "text!": (t) -> $node.text t
 
