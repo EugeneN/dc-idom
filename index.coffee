@@ -149,7 +149,8 @@ jqidom = (node) ->
 
     get_by_id: (id) -> $ "##{id}"
 
-    getData: (attr, node=$node) -> ($ node).data()[attr]
+    getData: (attr, node=$node) -> 
+        ($ node).data attr
 
     get_id: (node=$node) -> ($ node).attr 'id'
 
