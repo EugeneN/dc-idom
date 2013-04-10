@@ -6,16 +6,19 @@ $ = require 'commonjs-jquery'
 
 IDom = [
     ['set-html!',     ['new_content']]
+    ['html',          ['new_content']]
     ['get-html',      []]
     ['setValue',      ['new_value']]
-    ['setText',       ['new_text']]
+    ['setText',       ['text']]
     ['getValue',      []]
     ['alert',         ['msg']]
     ['click',         ['handler']]
     ['globalclick',   ['handler']]
     ['keyDown',       ['handler']]
-    ['globalKeyDown',       ['handler']]
+    ['keyUp',         ['handler']]
+    ['globalKeyDown', ['handler']]
     ['on_change',     ['handler']]
+    ['change',        ['handler']]
 
     ['appendContent', ['content']]
     ['kill',          []]
@@ -24,18 +27,27 @@ IDom = [
     ['dbclick',       ['e']]
     ['focusout',      ['e']]
     ['focus',         []]
+    ['mouse_enter',   ['handler']]
     ['get_by_attr',   ['attr']]
     ['get_by_id',     ['id']]
     ['getData',       ['attr', 'node']]
     ['get_id',        ['node']]
+    ['disable',       []]
+    ['enable',        []]
+    ['canWrite',      []]
+    ['readonly',      []]
     ['on_dom_ready',  ['f']]
     ['one',           ['sel']]
     ['document',      []]
     ['get_root_node', []]
     ['add_event_listener', ['event_name', 'handler']]
+    ['trigger',       ['event', 'args']]
     ['on_document_loaded', ['f']]
 
-    ['toggleClass', ['from_to']]
+    ['addClass',      ['cls']]
+    ['removeClass',   ['cls']]
+    ['toggleClass',   ['from_to']]
+    ['toggleText',    ['x', 'y']]
 
     ['data',    []]
     ['target',  ['ev']]
@@ -43,9 +55,6 @@ IDom = [
     ['is_in',      ['subtree', 'ev']]
 
     ['parent', []]
-
-    ['disable', []]
-    ['enable', []]
 
     ['text!', ['text']]
 
@@ -89,13 +98,15 @@ jqidom = (node) ->
     'set-html!': (args...) ->
         $node.html (args.join '')
 
+    html: (args...) ->
+        $node.html (args.join '')
+
     'get-html': -> $node.html()
 
     setValue: (args...) ->
         $node.val (args.join '')
 
-    setText: (args...) ->
-        $node.text (args.join '')
+    setText: (text) -> $node.text text
 
     getValue: () ->
         # FIXME
@@ -124,10 +135,14 @@ jqidom = (node) ->
 
     keyDown: (handler) -> $node.bind 'keydown', handler
 
+    keyUp: (handler) -> $node.bind 'keyup', handler
+
     globalKeyDown: (handler) -> $(document).bind 'keydown', handler
 
     on_change: (handler) ->
         $node.bind 'onchange', handler
+
+    change: (handler) -> $node.change handler
 
     dbclick: (handler) ->
         $node.dblclick handler
@@ -137,6 +152,8 @@ jqidom = (node) ->
 
     focus: ->
         $node.focus()
+
+    mouse_enter: (handler) -> $node.mouseenter handler
 
     get_by_attr: (attr) ->
         # FIXME
@@ -158,6 +175,12 @@ jqidom = (node) ->
 
     on_document_loaded: (f) ->  ($ window).load f
 
+    #get_id: (node=$node) -> (jQuery node).attr 'id'
+
+    canWrite: -> $node.removeAttr 'readonly'
+
+    readonly: -> $node.attr 'readonly', 'readonly'
+
     one: (sel) -> ($ sel)
 
     document: -> window.document
@@ -173,6 +196,12 @@ jqidom = (node) ->
             error "Can't add event listener: no addEventListener nor attachEvent present", event_name, node
             throw "Can't add event listener: no addEventListener nor attachEvent present"
 
+    trigger: (event, args) -> $node.trigger event, args
+
+    addClass: (cls) -> $node.addClass cls
+
+    removeClass: (cls) -> $node.removeClass cls
+
     toggleClass: ([from, to]) ->
         if $node.hasClass from
             $node.removeClass from
@@ -180,6 +209,9 @@ jqidom = (node) ->
         else
             $node.removeClass to
             $node.addClass from
+
+    toggleText: (x, y) ->
+        if x is $node.text() then $node.text y else $node.text x
 
     }
 
