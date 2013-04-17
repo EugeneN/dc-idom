@@ -58,8 +58,7 @@ IDom = [
 
     ['text!', ['text']]
 
-    ['append-to', ['sel']]
-
+    ['append-to', ['to_sel', 'which_sel']]
 ]
 
 in_subtree = ($node, target) ->
@@ -73,7 +72,7 @@ jqidom = (node) ->
 
 
     {
-    "append-to": (sel) -> $node.appendTo sel
+    "append-to": (to_sel, which_sel) -> ($ which_sel).appendTo to_sel
 
     "text!": (t) -> $node.text t
 
