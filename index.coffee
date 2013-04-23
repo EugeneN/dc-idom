@@ -5,60 +5,63 @@
 $ = require 'commonjs-jquery'
 
 IDom = [
-    ['set-html!',     ['new_content']]
-    ['html',          ['new_content']]
-    ['get-html',      []]
-    ['setValue',      ['new_value']]
-    ['setText',       ['text']]
-    ['getValue',      []]
-    ['alert',         ['msg']]
-    ['click',         ['handler']]
-    ['globalclick',   ['handler']]
-    ['keyDown',       ['handler']]
-    ['keyUp',         ['handler']]
-    ['globalKeyDown', ['handler']]
-    ['on_change',     ['handler']]
-    ['change',        ['handler']]
+    ['set-html!',           ['new_content']]
+    ['html',                ['new_content']]
+    ['get-html',            []]
+    ['setValue',            ['new_value']]
+    ['setText',             ['text']]
+    ['getValue',            []]
+    ['alert',               ['msg']]
+    ['click',               ['handler']]
+    ['click-once',          ['handler']]
+    ['globalclick',         ['handler']]
+    ['keyDown',             ['handler']]
+    ['keyUp',               ['handler']]
+    ['globalKeyDown',       ['handler']]
+    ['on_change',           ['handler']]
+    ['change',              ['handler']]
 
-    ['appendContent', ['content']]
-    ['kill',          []]
-    ['stop_event',    ['e']]
-    ['setAttr',       ['attr']]
-    ['dbclick',       ['e']]
-    ['focusout',      ['e']]
-    ['focus',         []]
-    ['mouse_enter',   ['handler']]
-    ['get_by_attr',   ['attr']]
-    ['get_by_id',     ['id']]
-    ['getData',       ['attr', 'node']]
-    ['get_id',        ['node']]
-    ['disable',       []]
-    ['enable',        []]
-    ['canWrite',      []]
-    ['readonly',      []]
-    ['on_dom_ready',  ['f']]
-    ['one',           ['sel']]
-    ['document',      []]
-    ['get_root_node', []]
-    ['add_event_listener', ['event_name', 'handler']]
-    ['trigger',       ['event', 'args']]
-    ['on_document_loaded', ['f']]
+    ['appendContent',       ['content']]
+    ['kill',                []]
+    ['stop_event',          ['e']]
+    ['setAttr',             ['attr']]
+    ['dbclick',             ['e']]
+    ['focusout',            ['e']]
+    ['focus',               []]
+    ['mouse_enter',         ['handler']]
+    ['mouseout',            ['handler']]
+    ['get_by_attr',         ['attr']]
+    ['get_by_id',           ['id']]
+    ['getData',             ['attr', 'node']]
+    ['get_id',              ['node']]
+    ['disable',             []]
+    ['enable',              []]
+    ['canWrite',            []]
+    ['readonly',            []]
+    ['on_dom_ready',        ['f']]
+    ['one',                 ['sel']]
+    ['document',            []]
+    ['get_root_node',       []]
+    ['add_event_listener',  ['event_name', 'handler']]
+    ['trigger',             ['event', 'args']]
+    ['on_document_loaded',  ['f']]
 
-    ['addClass',      ['cls']]
-    ['removeClass',   ['cls']]
-    ['toggleClass',   ['from_to']]
-    ['toggleText',    ['x', 'y']]
+    ['addClass',            ['cls']]
+    ['removeClass',         ['cls']]
+    ['toggleClass',         ['from_to']]
+    ['toggleText',          ['x', 'y']]
 
-    ['data',    []]
-    ['target',  ['ev']]
+    ['data',                []]
+    ['target',              ['ev']]
+    ['current-target',      ['ev']]
 
-    ['is_in',      ['subtree', 'ev']]
+    ['is_in',               ['subtree', 'ev']]
 
-    ['parent', []]
+    ['parent',              []]
 
-    ['text!', ['text']]
+    ['text!',               ['text']]
 
-    ['append-to', ['to_sel', 'which_sel']]
+    ['append-to',           ['to_sel', 'which_sel']]
 ]
 
 in_subtree = ($node, target) ->
@@ -72,6 +75,8 @@ jqidom = (node) ->
 
 
     {
+    mouseout: (handler) -> $node.mouseleave handler
+
     "append-to": (to_sel, which_sel) -> ($ which_sel).appendTo to_sel
 
     "text!": (t) -> $node.text t
@@ -85,6 +90,8 @@ jqidom = (node) ->
     parent: -> $node.parent()
 
     target: (ev) -> ev.target
+
+    'current-target': (ev) -> ev.currentTarget
 
     is_in: (subtrees, target_node) ->
         for elid in subtrees
@@ -128,6 +135,8 @@ jqidom = (node) ->
     alert: (args...) -> alert args...
 
     click: (handler) -> $node.click handler
+
+    'click-once': (handler) -> $node.one 'click', handler
 
     globalclick: (handler) -> $(document).click handler
 
