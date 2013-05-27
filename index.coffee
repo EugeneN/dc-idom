@@ -52,6 +52,7 @@ IDom = [
     ['toggleText',          ['x', 'y']]
 
     ['data',                []]
+    ['data-key',            ['key'], {doc: "Returns key from data attrs"}]
     ['target',              ['ev']]
     ['current-target',      ['ev']]
 
@@ -86,6 +87,8 @@ jqidom = (node) ->
     enable: -> $node.removeAttr 'disabled'
 
     data: -> $node.data()
+
+    'data-key': (key) -> $node.data key
 
     parent: -> $node.parent()
 
