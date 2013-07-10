@@ -25,6 +25,7 @@ IDom = [
     ['kill',                []]
     ['stop_event',          ['e']]
     ['setAttr',             ['attr']]
+    ['getAttr',             ['attr']]
     ['dbclick',             ['e']]
     ['focusout',            ['e']]
     ['focus',               []]
@@ -131,7 +132,9 @@ jqidom = (node) ->
 
     setAttr: (attr) ->
         say 'setattr'
-
+    
+    getAttr: (name) -> $node.attr name
+    
     appendContent: (content) ->
         $node.append "<div>#{content}</div>"
 
