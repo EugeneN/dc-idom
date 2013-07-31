@@ -65,7 +65,7 @@ IDom = [
 
     ['append-to',           ['to_sel', 'which_sel']]
 
-    ['click',               ['orig_ev']]
+    ['click!',              ['orig_ev']]
 ]
 
 in_subtree = ($node, target) ->
@@ -79,7 +79,7 @@ jqidom = (node) ->
 
 
     {
-    click: (orig_ev) -> $node.click()
+    'click!': (orig_ev) -> $node.click()
 
     mouseout: (handler) -> $node.mouseleave handler
 
