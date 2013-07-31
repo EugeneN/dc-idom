@@ -1,7 +1,7 @@
 {
   "name": "dc-idom",
   "description": "DNA component IDom",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "author": {
     "name": "E.Naumenko"
   },
@@ -24,7 +24,5 @@
   ],
   "main": "./index.js",
   "readme": "libmonad\n========",
-  "readmeFilename": "README.md",
-  "_id": "dc-idom@0.0.14",
-  "_from": "dc-idom@"
+  "readmeFilename": "README.md"
 }
