@@ -66,6 +66,11 @@ IDom = [
     ['append-to',           ['to_sel', 'which_sel']]
 
     ['click!',              ['orig_ev']]
+
+    ['get_form_data',       []]
+    ['preventDefault',      ['ev']]
+    ['prepend',             ['content']]
+
 ]
 
 in_subtree = ($node, target) ->
@@ -79,6 +84,12 @@ jqidom = (node) ->
 
 
     {
+    preventDefault: (ev) -> ev.preventDefault()
+
+    get_form_data: -> $node.serializeObject()
+
+    prepend: (content) -> $node.prepend content
+
     'click!': (orig_ev) -> $node.click()
 
     mouseout: (handler) -> $node.mouseleave handler
