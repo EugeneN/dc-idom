@@ -25,7 +25,6 @@ IDom = [
     ['kill',                []]
     ['stop_event',          ['e']]
     ['setAttr',             ['attr']]
-    ['getAttr',             ['attr']]
     ['dbclick',             ['e']]
     ['focusout',            ['e']]
     ['focus',               []]
@@ -64,8 +63,9 @@ IDom = [
     ['text!',               ['text']]
 
     ['append-to',           ['to_sel', 'which_sel']]
-
-    ['click!',              ['orig_ev']]
+    ['get_form_data',       []]
+    ['preventDefault',      ['ev']]
+    ['prepend',             ['content']]
 ]
 
 in_subtree = ($node, target) ->
@@ -79,8 +79,6 @@ jqidom = (node) ->
 
 
     {
-    'click!': (orig_ev) -> $node.click()
-
     mouseout: (handler) -> $node.mouseleave handler
 
     "append-to": (to_sel, which_sel) -> ($ which_sel).appendTo to_sel
@@ -136,9 +134,7 @@ jqidom = (node) ->
 
     setAttr: (attr) ->
         say 'setattr'
-    
-    getAttr: (name) -> $node.attr name
-    
+
     appendContent: (content) ->
         $node.append "<div>#{content}</div>"
 
@@ -234,6 +230,12 @@ jqidom = (node) ->
 
     toggleText: (x, y) ->
         if x is $node.text() then $node.text y else $node.text x
+
+    preventDefault: (ev) -> ev.preventDefault()
+
+    get_form_data: -> $node.serializeObject()
+
+    prepend: (content) -> $node.prepend content
 
     }
 
