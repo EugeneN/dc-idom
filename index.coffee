@@ -1,6 +1,6 @@
 {dispatch_impl} = require 'libprotocol'
 {info, warn, error, debug} = dispatch_impl 'ILogger', 'IDom'
-{is_array} = require 'libprotein'
+{is_array, is_function} = require 'libprotein'
 
 $ = require 'commonjs-jquery'
 
@@ -71,6 +71,10 @@ IDom = [
     ['preventDefault',      ['ev']]
     ['prepend',             ['content']]
 
+    ['click-delegate',      ['selector', 'handler']]
+    ['hover-delegate',      ['selector', 'handler']]
+    ['delegate',            ['action', 'selector', 'handler']]
+
 ]
 
 in_subtree = ($node, target) ->
@@ -84,6 +88,18 @@ jqidom = (node) ->
 
 
     {
+    'click-delegate': (sel, handler) ->
+        real_sel = if is_function sel then sel() else sel
+        ($ real_sel).click handler
+
+    'hover-delegate': (sel, handler) ->
+        real_sel = if is_function sel then sel() else sel
+
+        ($ real_sel).mouseenter handler
+
+    delegate: (action, selector, handler) ->
+        $(selector).on action, handler
+
     preventDefault: (ev) -> ev.preventDefault()
 
     get_form_data: -> $node.serializeObject()
