@@ -76,6 +76,8 @@ IDom = [
     ['hover-delegate',      ['selector', 'handler']]
     ['delegate',            ['action', 'selector', 'handler']]
 
+    ['global-key',          ['keys', 'handler']]
+
 ]
 
 in_subtree = ($node, target) ->
@@ -89,6 +91,12 @@ jqidom = (node) ->
 
 
     {
+    'global-key': (key, h) ->
+        keys = if is_array key then key else [key]
+        $(document).bind 'keydown', (ev) ->
+            if ev.which in keys
+                h ev.which
+
     'click-delegate': (sel, handler) ->
         real_sel = if is_function sel then sel() else sel
         ($ real_sel).click handler
