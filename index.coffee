@@ -23,6 +23,7 @@ IDom = [
 
     ['appendContent',       ['content']]
     ['kill',                []]
+    ['kill-9',              []]
     ['stop_event',          ['e']]
     ['setAttr',             ['attr']]
     ['getAttr',             ['attr']]
@@ -187,6 +188,11 @@ jqidom = (node) ->
     globalclick: (handler) -> $(document).click handler
 
     kill: -> $node.remove()
+
+    'kill-9': ->
+        dna = require 'dna-lang'
+        dna.forget_cell node.id
+        $node.remove()
 
     stop_event: (e) ->
         $.Event(e).stopPropagation()
