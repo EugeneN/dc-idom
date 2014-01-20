@@ -78,6 +78,9 @@ IDom = [
     ['delegate',            ['action', 'selector', 'handler']]
 
     ['global-key',          ['keys', 'handler']]
+    
+    ['checked?',            []]
+    ['unchecked?',          []]
 
 ]
 
@@ -278,6 +281,12 @@ jqidom = (node) ->
 
     toggleText: (x, y) ->
         if x is $node.text() then $node.text y else $node.text x
+
+    'checked?': ->
+        if ($node.attr 'checked') is 'checked' then true else null
+
+    'unchecked?': ->
+        if ($node.attr 'checked') isnt 'checked' then true else null
 
     }
 
