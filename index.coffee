@@ -53,6 +53,7 @@ IDom = [
     ['removeClass',         ['cls']]
     ['toggleClass',         ['from_to']]
     ['toggleText',          ['x', 'y']]
+    ['css',                 ['attr', 'value']]
 
     ['data',                []]
     ['data-key',            ['key'], {doc: "Returns key from data attrs"}]
@@ -287,6 +288,9 @@ jqidom = (node) ->
 
     'if-unchecked?': ->
         if ($node.attr 'checked') isnt 'checked' then true else null
+
+    css: (attr, value) ->
+        $node.css(attr, value)
 
     }
 
