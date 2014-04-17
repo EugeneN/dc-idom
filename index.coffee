@@ -27,6 +27,7 @@ IDom = [
     ['setAttr',             ['attr']]
     ['dbclick',             ['e']]
     ['focusout',            ['e']]
+    ['focusin',             ['handler']]
     ['focus',               []]
     ['mouse_enter',         ['handler']]
     ['mouseout',            ['handler']]
@@ -165,6 +166,9 @@ jqidom = (node) ->
 
     focusout: (handler) ->
         $node.blur handler
+
+    focusin: (handler) ->
+        $node.focus handler
 
     focus: ->
         $node.focus()
