@@ -134,6 +134,8 @@ jqidom = (node) ->
     enable: -> $node.removeAttr 'disabled'
 
     data: -> $node.data()
+    
+    setData: (value, key) -> $node.data(key, value)
 
     'data-key': (key) -> $node.data key
 
