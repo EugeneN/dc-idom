@@ -83,6 +83,7 @@ IDom = [
     
     ['if-checked?',            []]
     ['if-unchecked?',          []]
+    ['submit',          []]
 
 ]
 
@@ -297,6 +298,8 @@ jqidom = (node) ->
         $node.css(attr, value)
 
     }
+    submit: () ->
+        $node.submit()
 
 module.exports =
     protocols:
