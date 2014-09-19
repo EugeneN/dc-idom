@@ -297,9 +297,9 @@ jqidom = (node) ->
     css: (attr, value) ->
         $node.css(attr, value)
 
-    }
     submit: () ->
         $node.submit()
+    }
 
 module.exports =
     protocols:
