@@ -85,6 +85,7 @@ IDom = [
     ['if-unchecked?',          []]
     ['submit',          []]
     ['scrollToId',           ['id', 'delta', 'speed']]
+    ['eq',                  ['x', 'y']]
 ]
 
 in_subtree = ($node, target) ->
@@ -303,6 +304,10 @@ jqidom = (node) ->
     scrollToId: (id, delta, speed) -> 
         $('html, body').animate({scrollTop:$("##{id}").offset().top - delta}, speed);
     
+    }
+    
+    eq: (x, y) ->
+        x == y or null
     }
 
 module.exports =
