@@ -304,8 +304,6 @@ jqidom = (node) ->
     scrollToId: (id, delta, speed) -> 
         $('html, body').animate({scrollTop:$("##{id}").offset().top - delta}, speed);
     
-    }
-    
     eq: (x, y) ->
         x == y or null
     }
