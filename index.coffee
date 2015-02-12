@@ -147,12 +147,12 @@ jqidom = (node) ->
 
     is_in: (subtrees, target_node) ->
         for elid in subtrees
-            $node = if elid is 'this'
+            current_node = if elid is 'this'
                 $node
             else
                 $ "##{elid}"
 
-            if in_subtree $node, target_node
+            if in_subtree current_node, target_node
                 return true
 
         false
